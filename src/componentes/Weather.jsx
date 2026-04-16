@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Weather() {
+function Weather({ city, onTimezoneChange }) {
     const[weatherData, setWeatherData] = useState(null)
     const API_KEY = "39e5d453e46c0ba96d06e7b4dd258f25"
 
@@ -13,11 +13,11 @@ function Weather() {
                 const data = await response.json();
                 if (data.cod === 200) {
                     setWeatherData(data);
-                    onTimezoneChange(data.timezone); 
+                    if(onTimezoneChange) onTimezoneChange(data.timezone); 
                 } else {
                     alert("Ciudad no encontrada");
                 }
-            } catch (error) { console.error(error); }
+            } catch (error) { console.error("Error en la API", error); }
         };
         fetchWeather();
     }, [city]);
