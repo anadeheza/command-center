@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
 
-function Clock() {
+function Clock({ timezoneOffset }) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const timer = setInterval(() => 
-        setTime(new Date()), 1000);
+    const timer = setInterval(() => {
+      const now = new Date();
+      if (timezoneOffset !== null) {
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const cityTime = new Date(utc + (3600000 * (timezoneOffset / 3600)));
+        setTime(cityTime);
+      } else {
+        setTime(now);
+      }
+    }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [timezoneOffset]);
 
   return (
     <div className="clock-card">
