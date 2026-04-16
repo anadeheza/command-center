@@ -85,7 +85,7 @@ html, body, #root {
 }
 
 .weather-card h2 {
-  font-size: 3.5rem; /* Ajusta para que el tamaño sea idéntico */
+  font-size: 3.5rem;
 }
 
 .weather-card p {
