@@ -8,21 +8,21 @@ function Weather({ city, onTimezoneChange }) {
         const fetchWeather = async () => {
             try {
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=es`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=en`
                 );
                 const data = await response.json();
                 if (data.cod === 200) {
                     setWeatherData(data);
                     if(onTimezoneChange) onTimezoneChange(data.timezone); 
                 } else {
-                    alert("Ciudad no encontrada");
+                    alert("Not founded");
                 }
-            } catch (error) { console.error("Error en la API", error); }
+            } catch (error) { console.error("API error", error); }
         };
         fetchWeather();
     }, [city]);
 
-    if(!weatherData) return <div className="card"> Cargando clima... </div>
+    if(!weatherData) return <div className="card"> Loading... </div>
 
     return (
         <div className="weather-card">

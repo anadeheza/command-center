@@ -24,16 +24,15 @@ function App() {
         <form onSubmit={handleSearch} className="search-box">
           <input 
             type="text" 
-            placeholder="Cambiar ciudad..." 
+            placeholder="Change city..." 
             value={inputCity}
             onChange={(e) => setInputCity(e.target.value)}
           />
-          <button type="submit">Buscar</button>
+          <button type="submit">Search</button>
         </form>
       </header>
       
       <main className="grid">
-        {/* Pasamos city y timezone como "props" */}
         <Clock timezoneOffset={timezone} /> 
         <Weather city={city} onTimezoneChange={setTimezone} />
         <Notes />
